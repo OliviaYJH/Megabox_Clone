@@ -97,8 +97,7 @@ class MovieImage {
 
             for(i in 0 until jsonArray.length()){
                 val item = jsonArray.getJSONObject(i)
-                //title = item.getString("title")
-                title = item.getString("title")
+                title = item.getString("image") // 해당 영화 포스터 url 가져오기
                 Log.d("TITLE", title)
             }
         }catch (e: JSONException){
