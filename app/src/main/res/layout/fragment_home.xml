@@ -20,12 +20,12 @@
             <View
                 android:id="@+id/view_menu_list"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:background="#0B172E"
-                />
+                android:layout_height="160dp"
+                android:background="#0B172E" />
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
+                android:layout_marginTop="10dp"
                 android:layout_alignParentTop="true">
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -180,17 +180,56 @@
             <View
                 android:id="@+id/view_white"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/round_view"
+                android:layout_height="10dp"
                 android:layout_alignBottom="@+id/view_menu_list"
-                />
+                android:background="@drawable/round_view" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_below="@+id/view_white"
+                app:tabMode="scrollable">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#박스오피스" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#상영예정" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#돌비시네마" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#몬스터집아레나" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#단독" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#클소" />
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#필소" />
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#N스크린" />
+
+            </com.google.android.material.tabs.TabLayout>
 
 
 
