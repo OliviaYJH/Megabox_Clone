@@ -3,12 +3,197 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <View
+                android:id="@+id/view_menu_list"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="#0B172E"
+                />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_alignParentTop="true">
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="25dp">
+                            <ImageView
+                                android:id="@+id/iv_diary"
+                                android:layout_width="70dp"
+                                android:layout_height="90dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/diary"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:background="@drawable/round_menu"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="@+id/iv_diary"
+                                app:layout_constraintEnd_toEndOf="@+id/iv_diary"
+                                app:layout_constraintBottom_toBottomOf="@+id/iv_diary"
+                                android:text="DIARY"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:layout_marginBottom="10dp"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="25dp">
+                            <ImageView
+                                android:id="@+id/iv_vaccine"
+                                android:layout_width="70dp"
+                                android:layout_height="90dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/vaccine"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:background="@drawable/round_menu"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="@+id/iv_vaccine"
+                                app:layout_constraintEnd_toEndOf="@+id/iv_vaccine"
+                                app:layout_constraintBottom_toBottomOf="@+id/iv_vaccine"
+                                android:text="백신패스관"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:layout_marginBottom="10dp"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="25dp">
+                            <ImageView
+                                android:id="@+id/iv_letter"
+                                android:layout_width="70dp"
+                                android:layout_height="90dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/letter"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:background="@drawable/round_menu"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="@+id/iv_letter"
+                                app:layout_constraintEnd_toEndOf="@+id/iv_letter"
+                                app:layout_constraintBottom_toBottomOf="@+id/iv_letter"
+                                android:text="O.T"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:layout_marginBottom="10dp"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="25dp">
+                            <ImageView
+                                android:id="@+id/iv_card"
+                                android:layout_width="70dp"
+                                android:layout_height="90dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/card"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:background="@drawable/round_menu"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="@+id/iv_card"
+                                app:layout_constraintEnd_toEndOf="@+id/iv_card"
+                                app:layout_constraintBottom_toBottomOf="@+id/iv_card"
+                                android:text="제휴/할인"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:layout_marginBottom="10dp"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="25dp">
+                            <ImageView
+                                android:id="@+id/iv_movie"
+                                android:layout_width="70dp"
+                                android:layout_height="90dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/movie"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:background="@drawable/round_menu"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintStart_toStartOf="@+id/iv_movie"
+                                app:layout_constraintEnd_toEndOf="@+id/iv_movie"
+                                app:layout_constraintBottom_toBottomOf="@+id/iv_movie"
+                                android:text="무비피드"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:layout_marginBottom="10dp"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view_white"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/round_view"
+                android:layout_alignBottom="@+id/view_menu_list"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </RelativeLayout>
+    </ScrollView>
 </FrameLayout>
