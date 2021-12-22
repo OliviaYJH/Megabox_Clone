@@ -9,6 +9,7 @@ import com.example.rc_aos_megabox.databinding.FragmentHomeBinding
 import com.example.rc_aos_megabox.tablayout.BoxOfficeFragment
 import com.example.rc_aos_megabox.tablayout.DollCinemaFragment
 import com.example.rc_aos_megabox.tablayout.PlannedScreeningFragment
+import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : Fragment() {
 
@@ -35,8 +36,36 @@ class HomeFragment : Fragment() {
 
         childFragmentManager.beginTransaction().add(R.id.tab_framelayout, tab1).commit()
 
+        binding.tablayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab?.position){
+                    0 -> replaceView(tab1)
+                    1 -> replaceView(tab2)
+                    else -> replaceView(tab3)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
+
 
         return binding.root
+    }
+
+    private fun replaceView(tab: Fragment){
+        var selectedFragment: Fragment? = null
+        selectedFragment = tab
+        selectedFragment?.let {
+            childFragmentManager.beginTransaction()
+                .replace(R.id.tab_framelayout, it).commit()
+        }
     }
 
 }
