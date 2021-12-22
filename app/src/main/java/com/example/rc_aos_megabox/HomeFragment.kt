@@ -13,6 +13,9 @@ import com.example.rc_aos_megabox.tablayout.PlannedScreeningFragment
 class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
+    lateinit var tab1: BoxOfficeFragment
+    lateinit var tab2: PlannedScreeningFragment
+    lateinit var tab3: DollCinemaFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +29,12 @@ class HomeFragment : Fragment() {
         binding.ivCard.clipToOutline = true
         binding.ivMovie.clipToOutline = true
 
-        val list = listOf(BoxOfficeFragment(), PlannedScreeningFragment(), DollCinemaFragment())
+        tab1 = BoxOfficeFragment()
+        tab2 = PlannedScreeningFragment()
+        tab3 = DollCinemaFragment()
+
+        childFragmentManager.beginTransaction().add(R.id.tab_framelayout, tab1).commit()
+
 
         return binding.root
     }
