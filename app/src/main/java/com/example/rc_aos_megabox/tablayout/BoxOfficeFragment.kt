@@ -12,6 +12,9 @@ import com.example.rc_aos_megabox.*
 import com.example.rc_aos_megabox.databinding.ActivityMainBinding
 import com.example.rc_aos_megabox.databinding.FragmentBoxOfficeBinding
 import com.example.rc_aos_megabox.databinding.RecyclerviewItemBinding
+import com.example.rc_aos_megabox.naverapi.NaverSearchClient
+import com.example.rc_aos_megabox.naverapi.NaverSearchInterface
+import com.example.rc_aos_megabox.tablayout.BoxOfficeFragment.Companion.imgList
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -28,7 +31,6 @@ class BoxOfficeFragment : Fragment() {
 
     private var API_KEY = "b759981996e94214280b6ef4dc3fe99b"
     private lateinit var binding: FragmentBoxOfficeBinding
-    private lateinit var imagebinding: RecyclerviewItemBinding
 
     lateinit var movieAdapter: MovieAdapter
     val datas = mutableListOf<MovieData>()
@@ -38,23 +40,20 @@ class BoxOfficeFragment : Fragment() {
     var buyList = arrayListOf("74.3", "13.7", "4.9", "1.4", "1.4", "0.7", "0.7", "0.5", "0.4", "0.3")
     var starList = arrayListOf("9.4", "8.1", "7.8", "7.8", "8.8","9.7", "9.1", "9.2", "8.4", "8.4")
 
+
+
+    companion object{
+        var imgList = arrayOfNulls<String>(10)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBoxOfficeBinding.inflate(layoutInflater)
 
-        imagebinding = RecyclerviewItemBinding.inflate(layoutInflater)
-
-        val view = inflater.inflate(R.layout.recyclerview_item, container, false)
-        val poster = view.findViewById<ImageView>(R.id.iv_poster)
-        poster.clipToOutline = true
-        imagebinding.ivPoster.clipToOutline = true
-
         getMovieData(API_KEY, "20211221")
-
-
-
+        
         return binding.root
     }
 
@@ -71,24 +70,20 @@ class BoxOfficeFragment : Fragment() {
                         var text = result.boxOfficeResult.dailyBoxOfficeList.elementAt(i).movieNm
                         var rank = result.boxOfficeResult.dailyBoxOfficeList.elementAt(i).rank
 
-                        /*
+                        var movieImage = MovieImage()
+
                        val thread = Thread {
-                           var movieImage = MovieImage()
                            movieImage.main(text)
                        }.start()
-                       */
+
 
                         if(text.count() >= 11){
                             text = text.substring(0,10) + "..."
                         }
-
                         titleList[i] = text
                         rankList[i] = rank
-
-
                     }
                     initRecycler()
-
 
                 }else{
                     Log.d("fail", "error code ${response.code()}")
@@ -98,6 +93,11 @@ class BoxOfficeFragment : Fragment() {
                 Log.d("onFailure", t.message ?: "통신오류")
             }
         })
+    }
+
+    private fun getMovieImage(query: String){
+        val imgInterface = NaverSearchClient.sRetrofit.create(NaverSearchInterface::class.java)
+
     }
 
     private fun initRecycler(){
@@ -208,11 +208,14 @@ class MovieImage {
             jsonObject = JSONObject(responseBody)
             val jsonArray = jsonObject?.getJSONArray("items")
             Log.d("jsonArray", jsonArray.length().toString())
+
+            var j = 0
             for(i in 0 until jsonArray.length()){
                 val item = jsonArray.getJSONObject(i)
                 image = item.getString("image") // 해당 영화 포스터 url 가져오기
-                //MainActivity.imgArray.plus(item.getString("image"))
-                MainActivity.imgArray.plus(image)
+
+                BoxOfficeFragment.imgList[j] = image
+                j += 1
             }
 
         }catch (e: JSONException){

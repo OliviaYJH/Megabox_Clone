@@ -237,6 +237,131 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tablayout" />
 
+            <LinearLayout
+                android:id="@+id/more_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tab_framelayout">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="더 많은 영화보기"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/right_arrow"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_moviefeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/more_linear"
+                android:text="무비피드"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/iv_moviefeed"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:layout_below="@id/tv_moviefeed"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/moviefeed" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview_movieheadline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_moviefeed"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#fff"
+                android:elevation="10dp"
+                app:cardCornerRadius="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/movieheadline"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12월 2주 무비헤드라인"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="15dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="킹메이커 22년 개봉 연기. 정치인 '김운범'과 선거\n 전략가 '서창대'의 치열한 선거전쟁 이야기"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="12dp"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardview_movieheadline"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:background="#fff"
+                android:elevation="10dp"
+                app:cardCornerRadius="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/fridayboxoffice"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="금요일 박스오피스"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="15dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="국내는 물론 해외까지! 지금 관람객에게 사랑받는 영화는 \n무엇일까? 1위는 스파이더맨: 노 웨이 홈 그럼 2,3,4,5위..."
+                            android:layout_marginLeft="15dp"
+                            android:textSize="12dp"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>
