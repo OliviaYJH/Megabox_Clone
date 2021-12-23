@@ -1,5 +1,6 @@
 package com.example.rc_aos_megabox
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.rc_aos_megabox.databinding.ActivitySideMenuBinding
@@ -15,6 +16,10 @@ class SideMenuActivity : AppCompatActivity() {
 
         binding.btnClose.setOnClickListener {
             finish()
+        }
+
+        binding.tvLogin.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 }

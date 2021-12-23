@@ -72,7 +72,7 @@ class StartActivity : AppCompatActivity() {
             .setTitle("로그인 후 사용가능합니다.\n로그인 하시겠습니까?")
             .setPositiveButton("확인"){ dialog, which ->
                 // 로그인 창 띄우기
-                Toast.makeText(applicationContext, "ok", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, LoginActivity::class.java))
             }
             .setNeutralButton("취소", null)
             .create()
