@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.example.rc_aos_megabox.*
 import com.example.rc_aos_megabox.databinding.ActivityMainBinding
 import com.example.rc_aos_megabox.databinding.FragmentBoxOfficeBinding
+import com.example.rc_aos_megabox.databinding.RecyclerviewItemBinding
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -25,6 +27,7 @@ class BoxOfficeFragment : Fragment() {
 
     private var API_KEY = "b759981996e94214280b6ef4dc3fe99b"
     private lateinit var binding: FragmentBoxOfficeBinding
+    private lateinit var imagebinding: RecyclerviewItemBinding
 
     lateinit var movieAdapter: MovieAdapter
     val datas = mutableListOf<MovieData>()
@@ -32,13 +35,18 @@ class BoxOfficeFragment : Fragment() {
     var titleList = arrayOfNulls<String>(10)
     var rankList = arrayOfNulls<String>(10)
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBoxOfficeBinding.inflate(layoutInflater)
 
+        imagebinding = RecyclerviewItemBinding.inflate(layoutInflater)
+
+        val view = inflater.inflate(R.layout.recyclerview_item, container, false)
+        val poster = view.findViewById<ImageView>(R.id.iv_poster)
+        poster.clipToOutline = true
+        imagebinding.ivPoster.clipToOutline = true
 
         getMovieData(API_KEY, "20211221")
 
@@ -63,8 +71,6 @@ class BoxOfficeFragment : Fragment() {
                         titleList[i] = text
                         rankList[i] = rank
 
-                        //Toast.makeText(activity, rank, Toast.LENGTH_SHORT).show()
-                        Log.d("rank $i", rank)
                         /*
                         val thread = Thread {
                             var movieImage = MovieImage()
@@ -93,10 +99,10 @@ class BoxOfficeFragment : Fragment() {
 
 
         datas.apply {
-            //add(MovieData(title = "title", rank = "rank"))
-
             for(i in 0..9){
                 titleList[i]?.let { rankList[i]?.let { it1 -> MovieData(title = it, rank = it1) } }?.let { add(it) }
+
+
             }
 
             movieAdapter.datas = datas
