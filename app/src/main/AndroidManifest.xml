@@ -13,6 +13,9 @@
         android:theme="@style/Theme.RC_AOS_Megabox"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SideMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".StartActivity"
             android:exported="true">
             <intent-filter>
@@ -23,9 +26,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>
