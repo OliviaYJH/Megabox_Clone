@@ -3,14 +3,28 @@ package com.example.rc_aos_megabox
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.example.rc_aos_megabox.databinding.ActivityMainBinding
 import com.example.rc_aos_megabox.databinding.ActivityStartBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.*
+import java.lang.RuntimeException
+import java.lang.StringBuilder
+import java.net.HttpURLConnection
+import java.net.MalformedURLException
+import java.net.URL
+import java.net.URLEncoder
 
 class StartActivity : AppCompatActivity() {
 
@@ -48,6 +62,8 @@ class StartActivity : AppCompatActivity() {
             // alert dialog
             showLoginPop()
         }
+
+
     }
 
     private fun replaceFragment(fragment: Fragment){
@@ -57,12 +73,12 @@ class StartActivity : AppCompatActivity() {
     private fun showLoginPop(){
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.alert_pop, null)
-        val textView: TextView = view.findViewById(R.id.textView)
-        textView.text = "AlertDialog"
+
 
         val alertDialog = AlertDialog.Builder(this)
-            .setTitle("Dialog test")
+            .setTitle("로그인 후 사용가능합니다.\n로그인 하시겠습니까?")
             .setPositiveButton("확인"){ dialog, which ->
+                // 로그인 창 띄우기
                 Toast.makeText(applicationContext, "ok", Toast.LENGTH_SHORT).show()
             }
             .setNeutralButton("취소", null)
@@ -71,4 +87,7 @@ class StartActivity : AppCompatActivity() {
         alertDialog.setView(view)
         alertDialog.show()
     }
+
+
 }
+

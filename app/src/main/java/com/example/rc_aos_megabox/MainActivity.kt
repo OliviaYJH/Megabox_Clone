@@ -56,11 +56,12 @@ class MainActivity : AppCompatActivity() {
                     for(i in 0..9){
                         var text = result.boxOfficeResult.dailyBoxOfficeList.elementAt(i).movieNm
 
+                        /*
                         val thread = Thread {
                             var movieImage = MovieImage()
                             movieImage.main(text)
                         }.start()
-
+                        */
                     }
 
                 }else{
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 }
-
+/*
 class MovieImage {
     private val clientId = "0TiT2m5JCnaWgybu8eLH"
     private val clientSecret = "hUJZDFigbJ"
@@ -170,4 +171,4 @@ class MovieImage {
         }
     }
 }
-
+*/

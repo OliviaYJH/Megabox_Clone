@@ -1,22 +1,37 @@
 package com.example.rc_aos_megabox
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.rc_aos_megabox.databinding.ActivityMainBinding
+import com.example.rc_aos_megabox.databinding.FragmentBoxOfficeBinding
 import com.example.rc_aos_megabox.databinding.FragmentHomeBinding
 import com.example.rc_aos_megabox.tablayout.BoxOfficeFragment
 import com.example.rc_aos_megabox.tablayout.DollCinemaFragment
 import com.example.rc_aos_megabox.tablayout.PlannedScreeningFragment
 import com.google.android.material.tabs.TabLayout
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.*
+import java.net.HttpURLConnection
+import java.net.MalformedURLException
+import java.net.URL
+import java.net.URLEncoder
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
+
     lateinit var tab1: BoxOfficeFragment
     lateinit var tab2: PlannedScreeningFragment
     lateinit var tab3: DollCinemaFragment
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +70,6 @@ class HomeFragment : Fragment() {
 
         })
 
-
         return binding.root
     }
 
@@ -69,3 +83,4 @@ class HomeFragment : Fragment() {
     }
 
 }
+
