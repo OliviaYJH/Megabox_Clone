@@ -25,10 +25,14 @@ class MovieAdapter(context: BoxOfficeFragment): RecyclerView.Adapter<MovieAdapte
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val title : TextView = itemView.findViewById(R.id.tv_movieNm)
         private val rank : TextView = itemView.findViewById(R.id.tv_rank)
+        private val buy: TextView = itemView.findViewById(R.id.tv_buy)
+        private val star: TextView = itemView.findViewById(R.id.tv_star)
 
         fun bind(item: MovieData){
             title.text = item.title
             rank.text = item.rank
+            buy.text = "예매율 " + item.buy + "%"
+            star.text = item.star
         }
     }
 

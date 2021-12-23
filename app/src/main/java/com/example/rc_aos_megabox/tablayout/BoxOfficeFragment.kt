@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import com.example.rc_aos_megabox.*
 import com.example.rc_aos_megabox.databinding.ActivityMainBinding
 import com.example.rc_aos_megabox.databinding.FragmentBoxOfficeBinding
@@ -34,6 +35,8 @@ class BoxOfficeFragment : Fragment() {
 
     var titleList = arrayOfNulls<String>(10)
     var rankList = arrayOfNulls<String>(10)
+    var buyList = arrayListOf("74.3", "13.7", "4.9", "1.4", "1.4", "0.7", "0.7", "0.5", "0.4", "0.3")
+    var starList = arrayListOf("9.4", "8.1", "7.8", "7.8", "8.8","9.7", "9.1", "9.2", "8.4", "8.4")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,15 +71,21 @@ class BoxOfficeFragment : Fragment() {
                         var text = result.boxOfficeResult.dailyBoxOfficeList.elementAt(i).movieNm
                         var rank = result.boxOfficeResult.dailyBoxOfficeList.elementAt(i).rank
 
+                        /*
+                       val thread = Thread {
+                           var movieImage = MovieImage()
+                           movieImage.main(text)
+                       }.start()
+                       */
+
+                        if(text.count() >= 11){
+                            text = text.substring(0,10) + "..."
+                        }
+
                         titleList[i] = text
                         rankList[i] = rank
 
-                        /*
-                        val thread = Thread {
-                            var movieImage = MovieImage()
-                            movieImage.main(text)
-                        }.start()
-                        */
+
                     }
                     initRecycler()
 
@@ -100,9 +109,10 @@ class BoxOfficeFragment : Fragment() {
 
         datas.apply {
             for(i in 0..9){
-                titleList[i]?.let { rankList[i]?.let { it1 -> MovieData(title = it, rank = it1) } }?.let { add(it) }
 
-
+                // add(MovieData( , ))
+                titleList[i]?.let { rankList[i]?.let { it1 -> MovieData(title = it, rank = it1, buy = buyList[i], star = starList[i]) } }
+                    ?.let { add(it) }
             }
 
             movieAdapter.datas = datas
