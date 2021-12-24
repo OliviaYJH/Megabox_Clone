@@ -37,9 +37,12 @@ class BoxOfficeFragment : Fragment() {
 
     var titleList = arrayOfNulls<String>(10)
     var rankList = arrayOfNulls<String>(10)
+    var movieCd = arrayOfNulls<String>(10)
     var buyList = arrayListOf("74.3", "13.7", "4.9", "1.4", "1.4", "0.7", "0.7", "0.5", "0.4", "0.3")
     var starList = arrayListOf("9.4", "8.1", "7.8", "7.8", "8.8","9.7", "9.1", "9.2", "8.4", "8.4")
-
+    var imgArray = arrayListOf(R.drawable.spiderman_poster, R.drawable.second, R.drawable.third,
+        R.drawable.fourth, R.drawable.fifth, R.drawable.six, R.drawable.seven,
+        R.drawable.eight, R.drawable.nine, R.drawable.ten)
 
 
     companion object{
@@ -53,7 +56,7 @@ class BoxOfficeFragment : Fragment() {
         binding = FragmentBoxOfficeBinding.inflate(layoutInflater)
 
         getMovieData(API_KEY, "20211221")
-        
+
         return binding.root
     }
 
@@ -69,7 +72,7 @@ class BoxOfficeFragment : Fragment() {
                     for(i in 0..9){
                         var text = result.boxOfficeResult.dailyBoxOfficeList.elementAt(i).movieNm
                         var rank = result.boxOfficeResult.dailyBoxOfficeList.elementAt(i).rank
-
+                        var moviecd = result.boxOfficeResult.dailyBoxOfficeList.elementAt(i).movieCd
                         var movieImage = MovieImage()
 
                        val thread = Thread {
@@ -82,6 +85,7 @@ class BoxOfficeFragment : Fragment() {
                         }
                         titleList[i] = text
                         rankList[i] = rank
+                        movieCd[i] = moviecd
                     }
                     initRecycler()
 
@@ -111,8 +115,15 @@ class BoxOfficeFragment : Fragment() {
             for(i in 0..9){
 
                 // add(MovieData( , ))
-                titleList[i]?.let { rankList[i]?.let { it1 -> MovieData(title = it, rank = it1, buy = buyList[i], star = starList[i]) } }
+                titleList[i]?.let { rankList[i]?.let { it1 -> MovieData(title = it, rank = it1,
+                    buy = buyList[i], star = starList[i], img = imgArray[i]) } }
                     ?.let { add(it) }
+
+                /*
+                titleList[i]?.let { rankList[i]?.let { it1 -> MovieData(title = it, rank = it1,
+                                    buy = buyList[i], star = starList[i]), img = imgList[i]} }
+                    ?.let { add(it) }
+                 */
             }
 
             movieAdapter.datas = datas

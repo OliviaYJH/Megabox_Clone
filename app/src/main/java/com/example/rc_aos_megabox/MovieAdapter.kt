@@ -3,9 +3,13 @@ package com.example.rc_aos_megabox
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.rc_aos_megabox.tablayout.BoxOfficeFragment
+import kotlin.coroutines.coroutineContext
 
 class MovieAdapter(context: BoxOfficeFragment): RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
@@ -27,12 +31,20 @@ class MovieAdapter(context: BoxOfficeFragment): RecyclerView.Adapter<MovieAdapte
         private val rank : TextView = itemView.findViewById(R.id.tv_rank)
         private val buy: TextView = itemView.findViewById(R.id.tv_buy)
         private val star: TextView = itemView.findViewById(R.id.tv_star)
+        private val img: ImageView = itemView.findViewById(R.id.iv_poster)
 
         fun bind(item: MovieData){
             title.text = item.title
             rank.text = item.rank
             buy.text = "예매율 " + item.buy + "%"
             star.text = item.star
+            img.setImageResource(item.img)
+            /*
+                Glide.with(itemView.context).load(item.img)
+                    .apply(RequestOptions().override(160,230))
+                    .into(img)
+            */
+
         }
     }
 

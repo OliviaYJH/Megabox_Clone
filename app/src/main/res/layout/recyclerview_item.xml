@@ -23,7 +23,7 @@
                 android:id="@+id/iv_poster"
                 android:layout_width="160dp"
                 android:layout_height="230dp"
-                android:src="@drawable/spiderman"
+                android:src="@drawable/second"
                 android:scaleType="centerCrop"
                 android:background="@drawable/round_posterimg"
                 android:clipToOutline="true"
