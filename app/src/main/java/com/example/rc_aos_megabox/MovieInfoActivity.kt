@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.rc_aos_megabox.databinding.ActivityMovieInfoBinding
-import com.example.rc_aos_megabox.movieInfo.MovieInfoInterface
-import com.example.rc_aos_megabox.movieInfo.MovieInfoResponse
-import com.example.rc_aos_megabox.movieInfo.MovieInfoRetrofitClient
+import com.example.rc_aos_megabox.movieInfo.*
 import com.example.rc_aos_megabox.tablayout.BoxOfficeFragment
+import com.example.rc_aos_megabox.tablayout.DollCinemaFragment
+import com.example.rc_aos_megabox.tablayout.PlannedScreeningFragment
+import com.google.android.material.tabs.TabLayout
 import retrofit2.Call
 import retrofit2.Response
 import javax.security.auth.callback.Callback
@@ -18,9 +20,38 @@ class MovieInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMovieInfoBinding
     private var API_KEY = "b759981996e94214280b6ef4dc3fe99b"
 
+    lateinit var tab1: MovieInfoFragment
+    lateinit var tab2: MovieCustomerFragment
+    lateinit var tab3: MoviePostFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieInfoBinding.inflate(layoutInflater)
+
+        tab1 = MovieInfoFragment()
+        tab2 = MovieCustomerFragment()
+        tab3 = MoviePostFragment()
+
+        supportFragmentManager.beginTransaction().add(R.id.tab_framelayout, tab1).commit()
+
+        binding.infoTablayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab?.position){
+                    0 -> replaceView(tab1)
+                    1 -> replaceView(tab2)
+                    2 -> replaceView(tab3)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
 
         var id = Integer.parseInt(intent.getStringExtra("id"))
         binding.ivPoster.setImageResource(BoxOfficeFragment.imgArray[id!!])
@@ -36,6 +67,15 @@ class MovieInfoActivity : AppCompatActivity() {
             Toast.makeText(this, intent.getStringExtra("movieCd"), Toast.LENGTH_SHORT).show()
         }
         setContentView(binding.root)
+    }
+
+    private fun replaceView(tab: Fragment){
+        var selectedFragment: Fragment?= null
+        selectedFragment = tab
+        selectedFragment?.let{
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.tab_framelayout, it).commit()
+        }
     }
 
     private fun getMovieInfoData(key: String,movieCd: String){
