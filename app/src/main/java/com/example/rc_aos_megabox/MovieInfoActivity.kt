@@ -75,7 +75,8 @@ class MovieInfoActivity : AppCompatActivity() {
     private fun replaceView(tab: Fragment){
 
         val bundle = Bundle()
-        bundle.putString("movieCd",intent.getStringExtra("movieCd") )
+        bundle.putString("movieCd",intent.getStringExtra("movieCd"))
+        bundle.putString("id", intent.getStringExtra("id"))
         tab.arguments = bundle
 
         var selectedFragment: Fragment?= null

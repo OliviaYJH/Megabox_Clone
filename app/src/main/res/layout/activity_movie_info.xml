@@ -62,6 +62,7 @@
         android:id="@+id/constraint_movieNm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         app:layout_constraintTop_toBottomOf="@+id/header_linear"
         >
         <ImageView
@@ -179,7 +180,7 @@
         <FrameLayout
             android:id="@+id/tab_framelayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/info_tablayout"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

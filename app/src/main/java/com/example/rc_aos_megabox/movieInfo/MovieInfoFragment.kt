@@ -1,5 +1,7 @@
 package com.example.rc_aos_megabox.movieInfo
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.rc_aos_megabox.MovieResponse
 import com.example.rc_aos_megabox.R
 import com.example.rc_aos_megabox.RetrofitClient
@@ -22,6 +25,7 @@ class MovieInfoFragment : Fragment() {
     private lateinit var binding: FragmentMovieInfoBinding
     private var API_KEY = "b759981996e94214280b6ef4dc3fe99b"
     private var movieCd: String?= null
+    private var id: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +33,15 @@ class MovieInfoFragment : Fragment() {
     ): View? {
         binding = FragmentMovieInfoBinding.inflate(layoutInflater)
 
-        getMovieData(API_KEY, "20211221")
+
 
         arguments?.let {
             movieCd = it.getString("movieCd")
-            //Toast.makeText(activity, it.getString("movieCd"), Toast.LENGTH_SHORT).show()
+            id = it.getString("id")
+            //Toast.makeText(activity, id, Toast.LENGTH_SHORT).show()
             movieCd?.let { getMovieInfoData(API_KEY, it) }
         }
-
+        id?.let { getMovieData(API_KEY, "20211221", it) }
         return binding.root
     }
 
@@ -112,15 +117,27 @@ class MovieInfoFragment : Fragment() {
         })
     }
 
-    private fun getMovieData(key: String, date: String){
+    private fun getMovieData(key: String, date: String, id: String){
         val movieInterface = RetrofitClient.sRetrofit.create(RetrofitInterface::class.java)
 
         movieInterface.getMovie(key, date).enqueue(object: Callback<MovieResponse> {
+            @SuppressLint("ResourceType")
             override fun onResponse(
                 call: Call<MovieResponse>, response: Response<MovieResponse>
             ) {
                 if(response.isSuccessful){
                     val result = response.body() as MovieResponse
+                    var idnum = Integer.parseInt(id)
+
+                    binding.tvCustomerNum.text = result.boxOfficeResult.dailyBoxOfficeList.get(idnum).audiAcc + " 명"
+                    binding.tvDailyCustomerNum.text = result.boxOfficeResult.dailyBoxOfficeList.get(idnum).audiCnt + " 명"
+                    var change = result.boxOfficeResult.dailyBoxOfficeList.get(idnum).audiChange
+                    binding.tvChange.text = change
+
+                    if(change.toDouble() < 0){
+                        Log.d("change", "success")
+                        binding.tvChange.setTextColor(ContextCompat.getColor(context!!, R.color.design_default_color_error))
+                    }
 
 
                 }else{

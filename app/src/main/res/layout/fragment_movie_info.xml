@@ -6,6 +6,7 @@
     android:background="@color/black"
     tools:context=".movieInfo.MovieInfoFragment">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -121,6 +122,75 @@
                 android:textColor="@color/white"
                 android:layout_marginLeft="15dp"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="누적 관객 수"
+                    android:textColor="#C8BFBF"/>
+                <TextView
+                    android:id="@+id/tv_customer_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="누적 관객 수"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:layout_marginTop="6dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일별 관객 수"
+                    android:textColor="#C8BFBF"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_daily_customer_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="일별 관객 수"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:layout_marginTop="6dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="전일대비"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/tv_change"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="전일대비"
+                            android:textColor="#0F46ED"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
+
 
 </FrameLayout>
