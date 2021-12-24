@@ -1,10 +1,13 @@
 package com.example.rc_aos_megabox
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -39,11 +42,23 @@ class MovieAdapter(context: BoxOfficeFragment): RecyclerView.Adapter<MovieAdapte
             buy.text = "예매율 " + item.buy + "%"
             star.text = item.star
             img.setImageResource(item.img)
+
             /*
                 Glide.with(itemView.context).load(item.img)
                     .apply(RequestOptions().override(160,230))
                     .into(img)
             */
+
+            itemView.setOnClickListener {
+                //Toast.makeText(itemView.context, item.id.toString(), Toast.LENGTH_SHORT).show()
+                var intent = Intent(itemView.context, MovieInfoActivity::class.java)
+                intent.putExtra("title", item.title)
+                intent.putExtra("id", item.id.toString())
+                intent.putExtra("rank", item.rank)
+                intent.putExtra("buy", item.buy)
+                intent.putExtra("star", item.star)
+                itemView.context.startActivity(intent)
+            }
 
         }
     }

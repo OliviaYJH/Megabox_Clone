@@ -13,6 +13,9 @@
         android:theme="@style/Theme.RC_AOS_Megabox"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MovieInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity

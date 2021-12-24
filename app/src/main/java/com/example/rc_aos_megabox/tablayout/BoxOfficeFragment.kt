@@ -40,12 +40,13 @@ class BoxOfficeFragment : Fragment() {
     var movieCd = arrayOfNulls<String>(10)
     var buyList = arrayListOf("74.3", "13.7", "4.9", "1.4", "1.4", "0.7", "0.7", "0.5", "0.4", "0.3")
     var starList = arrayListOf("9.4", "8.1", "7.8", "7.8", "8.8","9.7", "9.1", "9.2", "8.4", "8.4")
-    var imgArray = arrayListOf(R.drawable.spiderman_poster, R.drawable.second, R.drawable.third,
-        R.drawable.fourth, R.drawable.fifth, R.drawable.six, R.drawable.seven,
-        R.drawable.eight, R.drawable.nine, R.drawable.ten)
+
 
 
     companion object{
+        var imgArray = arrayListOf(R.drawable.spiderman_poster, R.drawable.second, R.drawable.third,
+            R.drawable.fourth, R.drawable.fifth, R.drawable.six, R.drawable.seven,
+            R.drawable.eight, R.drawable.nine, R.drawable.ten)
         var imgList = arrayOfNulls<String>(10)
     }
 
@@ -116,7 +117,7 @@ class BoxOfficeFragment : Fragment() {
 
                 // add(MovieData( , ))
                 titleList[i]?.let { rankList[i]?.let { it1 -> MovieData(title = it, rank = it1,
-                    buy = buyList[i], star = starList[i], img = imgArray[i]) } }
+                    buy = buyList[i], star = starList[i], img = imgArray[i])} }
                     ?.let { add(it) }
 
                 /*
@@ -129,6 +130,7 @@ class BoxOfficeFragment : Fragment() {
             movieAdapter.datas = datas
             movieAdapter.notifyDataSetChanged()
         }
+
 
 
     }
