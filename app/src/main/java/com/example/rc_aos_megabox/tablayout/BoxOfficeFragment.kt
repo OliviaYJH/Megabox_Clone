@@ -116,9 +116,20 @@ class BoxOfficeFragment : Fragment() {
             for(i in 0..9){
 
                 // add(MovieData( , ))
+                    /*
                 titleList[i]?.let { rankList[i]?.let { it1 -> MovieData(title = it, rank = it1,
-                    buy = buyList[i], star = starList[i], img = imgArray[i])} }
+                    buy = buyList[i], star = starList[i], img = imgArray[i], movieCd = movieCd[i])} }
                     ?.let { add(it) }
+                */
+                titleList[i]?.let {
+                    movieCd[i]?.let { it1 ->
+                        rankList[i]?.let { it2 ->
+                            MovieData(title = it, rank = it2, buy = buyList[i],
+                                star = starList[i], img = imgArray[i], movieCd = it1
+                            )
+                        }
+                    }
+                }?.let { add(it) }
 
                 /*
                 titleList[i]?.let { rankList[i]?.let { it1 -> MovieData(title = it, rank = it1,

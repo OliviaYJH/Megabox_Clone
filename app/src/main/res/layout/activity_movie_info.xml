@@ -6,33 +6,143 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".MovieInfoActivity">
-    <ImageView
-        android:id="@+id/iv_poster"
-        android:layout_width="160dp"
-        android:layout_height="230dp"
-        android:src="@drawable/spiderman_poster"
-        app:layout_constraintStart_toStartOf="parent"
-        android:scaleType="fitXY"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:id="@+id/tv_movieNm"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/header_linear"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="movieNm"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_poster"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"/>
-    <TextView
-        android:id="@+id/tv_eng_moiveNm"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/left_arrow"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"/>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#1A000000"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:src="@drawable/circle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="상영중"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/share"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="english movieNm"
-        android:textColor="#B5ADAD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_poster"
-        app:layout_constraintTop_toBottomOf="@+id/tv_movieNm"
-        android:layout_marginTop="5dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/header_linear"
+        >
+        <ImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="160dp"
+            android:layout_height="230dp"
+            android:src="@drawable/spiderman_poster"
+            app:layout_constraintStart_toStartOf="parent"
+            android:scaleType="fitXY"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_poster"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <TextView
+                android:id="@+id/tv_movieNm"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="movieNm"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                android:textStyle="normal"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="25dp"/>
+            <TextView
+                android:id="@+id/tv_eng_moiveNm"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="english movieNm"
+                android:textColor="#B5ADAD"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/tv_watch_grade"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="watchGrade"
+                android:textColor="#4CAF50"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:id="@+id/buy_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_poster"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_watch_grade">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/coupon"
+                    app:tint="@color/white" />
+                <TextView
+                    android:id="@+id/tv_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:textColor="@color/white"
+                    android:text="1위"/>
+                <TextView
+                    android:id="@+id/tv_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="15dp"
+                    android:text="평점"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

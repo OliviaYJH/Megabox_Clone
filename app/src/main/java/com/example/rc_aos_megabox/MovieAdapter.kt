@@ -57,6 +57,7 @@ class MovieAdapter(context: BoxOfficeFragment): RecyclerView.Adapter<MovieAdapte
                 intent.putExtra("rank", item.rank)
                 intent.putExtra("buy", item.buy)
                 intent.putExtra("star", item.star)
+                intent.putExtra("movieCd", item.movieCd)
                 itemView.context.startActivity(intent)
             }
 

@@ -6,7 +6,8 @@ data class MovieData(
     val buy: String,
     val star: String,
     val img: Int,
-    val id: Int = IdNum()
+    val id: Int = IdNum(),
+    val movieCd : String
     /*
     ,
     val img: String
