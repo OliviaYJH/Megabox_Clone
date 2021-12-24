@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.rc_aos_megabox.movieInfo.MovieInfoFragment
 import com.example.rc_aos_megabox.tablayout.BoxOfficeFragment
 import kotlin.coroutines.coroutineContext
 
@@ -59,6 +60,7 @@ class MovieAdapter(context: BoxOfficeFragment): RecyclerView.Adapter<MovieAdapte
                 intent.putExtra("star", item.star)
                 intent.putExtra("movieCd", item.movieCd)
                 itemView.context.startActivity(intent)
+
             }
 
         }
