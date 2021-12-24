@@ -20,6 +20,7 @@
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/activity_login.xml" value="0.2635416666666667" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/activity_main.xml" value="0.3515625" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/activity_movie_info.xml" value="0.27291666666666664" />
+        <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/activity_naver_map.xml" value="0.30520833333333336" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/activity_side_menu.xml" value="0.28177083333333336" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/activity_start.xml" value="0.3234375" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/alert_pop.xml" value="0.36614583333333334" />
@@ -27,6 +28,7 @@
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/fragment_box_office.xml" value="0.36614583333333334" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/fragment_doll_cinema.xml" value="0.3515625" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/fragment_map.xml" value="0.36614583333333334" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/fragment_mobile_order.xml" value="0.36614583333333334" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/fragment_movie_customer.xml" value="0.3229166666666667" />
         <entry key="..\:/RC_AOS/RC_AOS_Megabox/app/src/main/res/layout/fragment_movie_info.xml" value="0.3229166666666667" />

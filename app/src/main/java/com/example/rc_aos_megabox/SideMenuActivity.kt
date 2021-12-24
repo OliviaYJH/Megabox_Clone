@@ -21,5 +21,9 @@ class SideMenuActivity : AppCompatActivity() {
         binding.tvLogin.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
         }
+
+        binding.ivMap.setOnClickListener {
+            startActivity(Intent(this, NaverMapActivity::class.java))
+        }
     }
 }
