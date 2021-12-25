@@ -3,6 +3,7 @@ package com.example.rc_aos_megabox
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.graphics.PointF
 import android.location.Location
 import android.location.LocationListener
@@ -16,7 +17,9 @@ import com.example.rc_aos_megabox.databinding.ActivityNaverMapBinding
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.*
+import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
+import com.naver.maps.map.util.MarkerIcons
 import java.util.jar.Manifest
 
 class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -29,6 +32,13 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
+
+    private val marker = Marker()
+    private val markerList = ArrayList<Marker>()
+    private val latitudeArray = arrayOf(37.5291902, 37.5406056,37.5716167, 37.5563367, 37.5682553, 37.5678947)
+    private val longitudeArray = arrayOf(126.8759727, 126.8375628,126.8392641, 126.9222787, 126.8972733, 126.9450426)
+
+
 
     companion object{
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
@@ -64,9 +74,31 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // 사용자의 위치 모드 변경되면 그 좌표 토스트로 표시
         naverMap.addOnLocationChangeListener { location ->
+            /*
             Toast.makeText(this, "${location.latitude}, ${location.longitude}",
                 Toast.LENGTH_SHORT).show()
+            */
+
+
+            // 내 위치에 마커 찍기
+            marker.position = LatLng(location.latitude, location.longitude)
+            marker.icon = MarkerIcons.BLACK
+            marker.iconTintColor = Color.RED
+            marker.map = naverMap
         }
+
+        //marker.position = LatLng(37.5291902, 126.8759727)
+        //marker.map = naverMap
+
+        for(j in 0..latitudeArray.size-1){
+            markerList.add(Marker(LatLng(latitudeArray[j], longitudeArray[j])))
+            markerList[j].map = naverMap
+        }
+
+
+
+
+
 
         // 대중교통 레이어 그룹 활성화
         naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, true)
