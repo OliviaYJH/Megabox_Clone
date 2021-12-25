@@ -1,14 +1,23 @@
 package com.example.rc_aos_megabox
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.PointF
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.PermissionChecker
 import com.example.rc_aos_megabox.databinding.ActivityNaverMapBinding
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.LatLngBounds
 import com.naver.maps.map.*
+import com.naver.maps.map.util.FusedLocationSource
+import java.util.jar.Manifest
 
 class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -17,6 +26,13 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
     val southWest = LatLng(31.43, 132.0)
     val northEast = LatLng(44.35, 132.0)
     val bounds = LatLngBounds(southWest, northEast)
+
+    private lateinit var locationSource: FusedLocationSource
+    private lateinit var naverMap: NaverMap
+
+    companion object{
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,9 +48,26 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mapFragment.getMapAsync(this)
 
+        locationSource =
+            FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
+
+
+
     }
 
     override fun onMapReady(naverMap: NaverMap) {
+        this.naverMap = naverMap
+        naverMap.locationSource = locationSource
+
+        // 위치 추적 모드
+        naverMap.locationTrackingMode = LocationTrackingMode.Follow
+
+        // 사용자의 위치 모드 변경되면 그 좌표 토스트로 표시
+        naverMap.addOnLocationChangeListener { location ->
+            Toast.makeText(this, "${location.latitude}, ${location.longitude}",
+                Toast.LENGTH_SHORT).show()
+        }
+
         // 대중교통 레이어 그룹 활성화
         naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, true)
         // 실내 지도 활성화
@@ -101,6 +134,58 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if(locationSource.onRequestPermissionsResult(requestCode, permissions, grantResults)){
+            if(!locationSource.isActivated){
+                // 권한 거부됨
+                naverMap.locationTrackingMode = LocationTrackingMode.None
+            }
+            return
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
 
 }
+
+// LocationManager을 사용해 GPS 위치를 수신하도록 LocationSource 구현체
+class GpsOnlyLocationSource(private val context: Context): LocationSource, LocationListener{
+    private val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+    private var listener: LocationSource.OnLocationChangedListener?= null
+
+
+    @SuppressLint("WrongConstant")
+    override fun activate(listener: LocationSource.OnLocationChangedListener) {
+        if(locationManager == null){
+            return
+        }
+
+        if(PermissionChecker.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED &&
+            PermissionChecker.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED){
+            return
+        }
+
+        this.listener = listener
+        locationManager.requestLocationUpdates(
+            LocationManager.GPS_PROVIDER, 1000, 10f, this)
+    }
+
+    override fun deactivate() {
+        if(locationManager == null){
+            return
+        }
+
+        listener = null
+        locationManager.removeUpdates(this)
+    }
+
+    override fun onLocationChanged(location: Location) {
+        listener?.onLocationChanged(location)
+    }
+}
+

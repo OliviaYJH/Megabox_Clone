@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         app:navermap_latitude = "35.1798159"
         app:navermap_longitude = "129.0750222"
-        app:navermap_zoom = "8"
+        app:navermap_zoom = "13"
         android:name="com.naver.maps.map.MapFragment"/>
 
 
